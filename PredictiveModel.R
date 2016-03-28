@@ -18,8 +18,8 @@ simulatedTest <- read.csv('##location of test set')
 
 #3. Run a regression 
 lrModel <- glm(PF2 ~ Streets,family="binomial", data = simulatedTrain)
-l
 summary(lrModel)
+
 #4. Run the pR2 (pseudo r-squared), get the McFadden statistic
 pR2(lrModel)
 
@@ -43,7 +43,7 @@ testProbs1$predClass  = ifelse(testProbs1$Probs > .2 ,1,0)
 #table(factor(testProbs1$predClass, levels=min(testProbs1$Class):max(testProbs1$Class)),factor(testProbs1$Class, levels=min(testProbs1$Class):max(testProbs1$Class)))
 confusionMatrix(testProbs1$Class ,testProbs1$predClass)
 
-#ROC Curve
+#Reciever Operating Curve
 pred1 <- prediction( testProbs1$Probs, testProbs1$Class)
 perf1 <- performance(pred1,"tpr","fpr")
 plot(perf1)
